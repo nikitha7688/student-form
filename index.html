@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do-list</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+</head>
+
+<body class="p-8">
+
+    
+    <div class="max-w-lg mx-auto">
+    <form id="studentForm" class="border border-purple-900 p-20 rounded-2xl bg-purple-300">
+        <h1 class="text-4xl text-center mb-8  font-bold">STUDENT FORM</h1>
+
+    <table>
+
+        <tr>
+        <th class="p-3"><label for="name" class="block">Name</label></th>
+        <td class="p-3"><input type="text"  id="name" class="border border-purple-400 p-2 w-full rounded-md  " ></th>
+        </tr>
+
+        <tr>
+            <th  class="p-3"><label for="age" class="block" >Age</label></th>
+            <td class="p-3"><input type="number"   id="age" class="border border-purple-400 p-2 w-full rounded-md" required></td>
+        </tr>
+
+        <tr>
+            <th  class="p-3"><span class="block" >Gender</span></th>
+       <th  class="p-3" >
+            <label ><input type="radio" name="gender" value="male">Male</label>
+            <label ><input type="radio" name="gender" value="Female">Famale</label>
+
+        </th>
+       </tr>
+
+       <tr>
+
+        <th class="p-3"><label for="course" class="block">Course</label></th>
+       <td class="p-3"><input type="text" id="course" class="border border-purple-400 p-2 w-full rounded-md"></td>
+
+       </tr>
+
+       <tr>
+
+        <th  class="p-3">E-mail</th>
+       <td class="p-3"><input type="email"  id="email" class="border border-purple-400 p-2 w-full rounded-md" required></td>
+
+       </tr>
+       
+       <tr>
+        <th>                                                                                                                                                                                                                    
+            <th colspan="2" class="pt-8 ">
+                <input type="submit"  id="Action" value="save" class="w-full bg-purple-500 text-black py-2 rounded-md cursor-pointer btn shadow-black hover:bg-slate-400 " >
+            </th>
+        </th>
+        </tr>
+    </div>
+    </table>
+    </form>
+
+    <table id="studentTable" class="mt-10 border border-purple-900 w-full rounded-lg bg-purple-400">
+        <tr class="bg-purple-400 mt-10 border border-purple-800 w-full rounded-lg ">
+            <th class="p-2 border-2 border-purple-950 bg-purple-400 ">Name</th><br>
+            <th class="p-3 border-2 border-purple-950  bg-purple-400  ">Age</th>
+            <th class="p-3 border-2 border-purple-950  bg-purple-400  ">Gender</th>
+            <th class="p-3 border-2 border-purple-950  bg-purple-400 ">Course</th>
+            <th class="p-3 border-2 border-purple-950  bg-purple-400 ">E-mail</th>
+            <th class="p-3 border-2 border-purple-950   bg-purple-400  ">Action</th>
+        </tr>
+    </table>
+
+    <script>
+          
+      document.getElementById('studentForm').addEventListener('submit',function(event){
+
+      event.preventDefault();     
+
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const gender = document.querySelector('input[name="gender"]:checked').value; 
+            const course = document.getElementById('course').value;
+            const email = document.getElementById('email').value;
+            
+            const table = document.getElementById('studentTable');
+
+              const newRow = table.insertRow();
+
+            newRow.insertCell(0).textContent = name;
+            newRow.insertCell(1).textContent = age;
+            newRow.insertCell(2).textContent = gender;
+             newRow.insertCell(3).textContent = course;
+             newRow.insertCell(4).textContent = email;
+
+              const actionCell = newRow.insertCell(5);
+              const deleteButton = document.createElement('button');
+              deleteButton.textContent = 'Delete';
+              deleteButton.classList.add('bg-pink-800', 'text-white', 'rounded', 'p-1');
+                 deleteButton.onclick = function () {
+                 table.deleteRow(newRow.rowIndex);
+                  };
+               actionCell.appendChild(deleteButton);
+
+               document.getElementById('studentForm').reset();
+          });
+
+            
+    </script>
+        
+
+    
+    
+     
+</body>
+</html>
